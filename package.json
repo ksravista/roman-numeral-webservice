@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "npm run build && npm run start",
-    "build": "tsc",
+    "build": "npm run test && tsc",
     "start": "node dist/index.js",
     "test": "jest"
   },
@@ -24,7 +24,6 @@
     "ts-jest": "^29.1.0"
   },
   "jest": {
-    "modulesFileExtensions": ["ts"],
     "transform": {
       "^.+\\.ts$" : "ts-jest"
     },
