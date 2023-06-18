@@ -1,12 +1,11 @@
-import express, { Express, Request, Response} from 'express';
+import express, { Express } from 'express';
+import { romanNumberRouter } from './routes/romanNumeralRoutes';
+import { PORT } from './config/config';
 
 const app: Express = express();
-const port = 8000;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello from express TS');
+app.use('/romannumeral', romanNumberRouter);
+
+app.listen(PORT, () => {
+    console.log(`port listening on ${PORT}`);
 });
-
-app.listen(port, () => {
-    console.log(`port listening on ${port}`);
-})

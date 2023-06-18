@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "serve": "npm run build && npm run start",
-    "build": "npm run test && tsc",
-    "start": "node dist/index.js",
+    "build": "rm -rf dist/* && npm run test && tsc",
+    "start": "node dist/src/index.js",
     "test": "jest"
   },
   "keywords": [],
