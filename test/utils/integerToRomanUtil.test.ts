@@ -1,24 +1,23 @@
-import { InvalidInputError } from "../../src/errors/InvalidInputError";
-import { integerToRoman } from "../../src/utils/integerToRomanUtil";
+import { InvalidInputError } from '../../src/errors/InvalidInputError';
+import { integerToRoman } from '../../src/utils/integerToRomanUtil';
 
-describe("Integer to Roman Util tests", () => {
-
-    test("if 1 is passed in the correct values is returned", () => {
+describe('Integer to Roman Util tests', () => {
+    test('if 1 is passed in the correct values is returned', () => {
         const expectedAnswer = 'I';
         expect(integerToRoman(1)).toEqual(expectedAnswer);
     });
 
-    test("if 9 is passed in the correct values is returned", () => {
+    test('if 9 is passed in the correct values is returned', () => {
         const expectedAnswer = 'IX';
         expect(integerToRoman(9)).toEqual(expectedAnswer);
     });
 
-    test("if 8 is passed in the correct values is returned", () => {
+    test('if 8 is passed in the correct values is returned', () => {
         const expectedAnswer = 'VIII';
         expect(integerToRoman(8)).toEqual(expectedAnswer);
     });
 
-    test("if 2690 is passed in the correct values is returned", () => {
+    test('if 2690 is passed in the correct values is returned', () => {
         const expectedAnswer = 'MMDCXC';
         expect(integerToRoman(2690)).toEqual(expectedAnswer);
     });
@@ -40,5 +39,4 @@ describe("Integer to Roman Util tests", () => {
             integerToRoman(4000);
         }).toThrow(InvalidInputError);
     });
-
 });
