@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
-import { romanNumberRouter } from './routes/romanNumeralRoutes';
+
 import { PORT } from './config/config';
+import { romanNumberRouter } from './routes/romanNumeralRoutes';
 
 const app: Express = express();
 

@@ -1,6 +1,5 @@
-
-export class InvalidInputError extends Error{
-    constructor(message: string){
+export class InvalidInputError extends Error {
+    constructor(message: string) {
         super(message);
     }
 }
