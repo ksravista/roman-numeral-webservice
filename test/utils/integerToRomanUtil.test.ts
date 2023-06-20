@@ -7,6 +7,11 @@ describe('Integer to Roman Util tests', () => {
         expect(integerToRoman(1)).toEqual(expectedAnswer);
     });
 
+    test('if 3999 is passed in the correct values is returned', () => {
+        const expectedAnswer = 'MMMCMXCIX';
+        expect(integerToRoman(3999)).toEqual(expectedAnswer);
+    });
+
     test('if 9 is passed in the correct values is returned', () => {
         const expectedAnswer = 'IX';
         expect(integerToRoman(9)).toEqual(expectedAnswer);

@@ -7,6 +7,6 @@ const app: Express = express();
 
 app.use('/romannumeral', romanNumberRouter);
 
-app.listen(PORT, () => {
+export default app.listen(PORT, () => {
     console.log(`port listening on ${PORT}`);
 });

@@ -1,7 +1,6 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 
+import { integerToRomanHandler } from './handlers/integerToRomanHandler';
 export const romanNumberRouter = express.Router();
 
-romanNumberRouter.get('/', (req: Request, res: Response) => {
-    res.send('Hello from route!');
-});
+romanNumberRouter.get('/', integerToRomanHandler);
