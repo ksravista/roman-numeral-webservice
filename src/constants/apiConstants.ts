@@ -1,4 +1,3 @@
-
 export const JSON_CONTENT_TYPE = 'appication/json';
 export const CONTENT_TYPE_HEADER = 'content-type';
 
