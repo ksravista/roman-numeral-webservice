@@ -8,6 +8,36 @@ import {
 import { InvalidInputError } from '../../errors/InvalidInputError';
 import logger from '../../logger/logger';
 import { integerToRoman } from '../../utils/integerToRomanUtil';
+import { Registry, Counter, collectDefaultMetrics } from 'prom-client';
+
+export const register = new Registry();
+
+const successCount = new Counter({
+    name: 'success_count',
+    help: 'count of successful requests'
+});
+
+const badCount = new Counter({
+    name: 'bad_request_count',
+    help: 'count of 4XX requests'
+});
+
+const failCount = new Counter({
+    name: 'failed_request_count',
+    help: 'count of 5XX requests'
+});
+register.registerMetric(successCount);
+register.registerMetric(badCount);
+register.registerMetric(failCount);
+
+register.setDefaultLabels({
+    app: "roman_numeral_service"
+});
+
+collectDefaultMetrics({
+    register
+});
+
 
 const USAGE_WARNING = '/romannumeral?query=23';
 
@@ -19,6 +49,8 @@ export function integerToRomanHandler(req: Request, res: Response) {
             logger.error(
                 `Invalid Request, query params are ${JSON.stringify(query)}`
             );
+
+            badCount.inc();
             return res.status(API_RESPONSE_CODES.BAD_REQUEST).send({
                 errorMessage:
                     'Only accepted query param is (query), should be a valid integer',
@@ -38,9 +70,13 @@ export function integerToRomanHandler(req: Request, res: Response) {
                 intToRoman
             )}`
         );
+
+        successCount.inc();
         return res.status(API_RESPONSE_CODES.SUCCESS).send(response);
     } catch (err: any) {
         if (err instanceof InvalidInputError) {
+
+            badCount.inc();
             logger.error(
                 `Invalid Request, query params are ${JSON.stringify(req.query)}`
             );
@@ -50,6 +86,8 @@ export function integerToRomanHandler(req: Request, res: Response) {
                 usage: USAGE_WARNING
             });
         } else {
+
+            failCount.inc();
             logger.error(`Internal Server Error: ${err.message}`);
             return res.status(API_RESPONSE_CODES.INTERNAL_SERVER_ERROR).send({
                 errorMessage: 'Internal Server Error'
