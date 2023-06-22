@@ -163,6 +163,12 @@ Please refer to the [pull requests here](https://github.com/ksravista/roman-nume
 - **Winston** - A popular logging framework for Node.js, which supports multiple transports, meaning that the logs can be redirected to multiple destinations. In this service, the logs are directed to a log file, but in a production enviroment it is helpful to also store the logs in a centralized location in case an instance of the service has an outage.
 - **Supertest** - A lightweight testing tool, which can used to test express routes in unit tests, without having to mock the various asynchrous response object in express. This provides an abstraction and allows us to just test the response from the API rather than how the response object is called. 
 
+### Possible next steps
+
+- Setup a centralized logging and metrics server rather than have them as an endpoint in the application server, so that all the logs and metrics can be aggregated from multiple containers to one location. 
+- Setup a CI/CD pipeline using Jenkins or other tools to automate deployment to another environment.
+- Add integration tests to run against the docker container
+
 ### Resources
 
 - https://github.com/winstonjs/winston
