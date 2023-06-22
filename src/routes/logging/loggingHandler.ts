@@ -2,7 +2,8 @@ import { Request, Response } from 'express';
 import fs from 'fs';
 
 /**
- * handler function which will read the log files and return all the content from the logs file
+ * handler function for /logs endpoint which will read 
+ * the log files and return all the content from the logs file
  * @param req request passed from express
  * @param res response used to send the data to client.
  */
